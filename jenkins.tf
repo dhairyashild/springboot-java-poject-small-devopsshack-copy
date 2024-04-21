@@ -1,15 +1,15 @@
 resource "aws_instance" "jenkin-ec2" {
-  ami               = data.aws_ami.example.id
-  instance_type     = var.instance_type-jenkins
+  ami           = data.aws_ami.example.id
+  instance_type = var.instance_type-jenkins
   key_name      = "killi"
 
   vpc_security_group_ids = [aws_security_group.jenkins-ec2.id]
-  subnet_id = module.vpc.public_subnets[0]
+  subnet_id              = module.vpc.public_subnets[0]
   tags = {
-    Name= "jenkins"
+    Name = "jenkins"
   }
   lifecycle {
-    ignore_changes= [tags]
+    ignore_changes = [tags]
   }
   user_data = <<-EOF
  
@@ -46,7 +46,7 @@ data "aws_ami" "example" {
 
   owners = ["aws-marketplace"]
 
-   filter {
+  filter {
     name   = "description"
     values = ["Canonical, Ubuntu, 20.04 LTS, amd64 focal image build on 2024-02-28"]
   }
@@ -96,15 +96,15 @@ resource "aws_security_group" "jenkins-ec2" {
 
 #######################################variables
 variable "sg-tag" {
-    default = "Name=jenkins-sg"
+  default = "Name=jenkins-sg"
 }
 
 variable "port" {
   type    = list(number)
-  default = [8080,22] # Example values, adjust as needed.
+  default = [8080, 22] # Example values, adjust as needed.
 }
- 
- variable "instance_type-jenkins" {
-    default = "t2.medium"
-   
- }
+
+variable "instance_type-jenkins" {
+  default = "t2.medium"
+
+}

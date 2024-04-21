@@ -1,7 +1,7 @@
 # terraform/provider.tf
 
 provider "aws" {
-  region = "ap-south-1"  # Change to your desired region
+  region = "ap-south-1" # Change to your desired region
 }
 
 terraform {

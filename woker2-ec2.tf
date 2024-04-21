@@ -1,15 +1,15 @@
 resource "aws_instance" "sonar-ec2" {
   ami           = data.aws_ami.example.id
- instance_type = var.instance_type_worker
-key_name      = "killi"
+  instance_type = var.instance_type_worker
+  key_name      = "killi"
 
 
   vpc_security_group_ids = [aws_security_group.sonar_sg.id]
   subnet_id              = module.vpc.public_subnets[0]
-tags = {
-  Name = "worker"
-}
-  user_data              = <<-EOF
+  tags = {
+    Name = "worker"
+  }
+  user_data = <<-EOF
 #!/bin/bash
 
 # Update package lists
@@ -122,15 +122,15 @@ resource "aws_security_group" "sonar_sg" {
 
 #######################################variables
 variable "sg-tag_1" {
-    default = "Name=jenkins-sg"
+  default = "Name=jenkins-sg"
 }
 
 variable "port_1" {
   type    = list(number)
-  default = [8080,22,9000,3000,80,443,9100,9090] # Example values, adjust as needed.
+  default = [8080, 22, 9000, 3000, 80, 443, 9100, 9090] # Example values, adjust as needed.
 }
- 
- variable "instance_type_worker" {
-    default = "t2.medium"
-   
- }
+
+variable "instance_type_worker" {
+  default = "t2.medium"
+
+}
