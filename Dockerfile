@@ -11,4 +11,4 @@ COPY ./target/spring-boot-web.jar /app
 EXPOSE 8082
 
 # Command to run the Spring Boot application
-CMD ["java", "-jar", "*.jar"]
+CMD ["java", "-jar", "spring-boot-web.jar"]
