@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: workshop
+  labels:
+    role: frontend
+    env: demo
+spec: 
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector:
+    matchLabels: 
+      role: frontend
+  template:
+    metadata:
+      labels:
+        role: frontend
+    spec: 
+      imagePullSecrets:
+      - name: ecr-registry-secret
+      containers:
+      - name: frontend
+        image: public.ecr.aws/d8y1d3c0/three-tier-frontend:latest
+        imagePullPolicy: Always
+        env:
+          - name: REACT_APP_BACKEND_URL
+            value: http://api:3500                                      #  http://<service-name>:<service-port>
+
+        ports:
+        - containerPort: 3000
