@@ -5,10 +5,10 @@ FROM openjdk:11-jre-slim
 WORKDIR /app
 
 # Copy the compiled JAR file into the container at /app
-COPY ./target/*.jar /app/
+COPY ./target/spring-boot-web.jar /app
 
 # Expose port 8080 to the outside world
 EXPOSE 8082
 
 # Command to run the Spring Boot application
-CMD ["java", "-jar", "*.jar"]
+CMD ["java", "-jar", "spring-boot-web.jar"]
