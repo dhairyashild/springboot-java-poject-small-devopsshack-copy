@@ -8,7 +8,7 @@ WORKDIR /app
 COPY ./target/spring-boot-web.jar /app
 
 # Expose port 8080 to the outside world
-EXPOSE 8082
+EXPOSE 8080
 
 # Command to run the Spring Boot application
 CMD ["java", "-jar", "spring-boot-web.jar"]
